@@ -1,0 +1,11 @@
+# zk服务器地址
+server: 127.0.0.1:2181
+# 需要导入ZK的数据，每个子对象相当于下级目录
+data: 
+  vrv: 
+    test: 
+      value1: test value 1
+      value2: test value 2
+    test2: 
+      value1: test2 value 1
+      value2: test2 value 2
