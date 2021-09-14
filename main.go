@@ -60,10 +60,16 @@ func appendData(parentPath string, data map[interface{}]interface{}) error {
 			if stringValue, ok := value.(string); ok {
 				if isExist {
 					println("写入路径：", path, "；已存在；覆盖值：", stringValue)
-					zkService.SetData(path, []byte(stringValue))
+					err = zkService.SetData(path, []byte(stringValue))
+					if err != nil {
+						return err
+					}
 				} else {
 					println("写入路径：", path, "；不存在；写入值：", stringValue)
-					zkService.Create(path, []byte(stringValue), 0)
+					err = zkService.Create(path, []byte(stringValue), 0)
+					if err != nil {
+						return err
+					}
 				}
 			} else {
 				return errors.New(fmt.Sprint("不支持的值类型，路径：", path, "；值：", value))
