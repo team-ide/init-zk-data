@@ -58,7 +58,7 @@ func (service *ZKService) SetData(path string, data []byte) (err error) {
 	if !isExist {
 		return errors.New("node:" + path + " not exists")
 	}
-	if _, err = service.conn.Set(path, data, state.Aversion+1); err != nil {
+	if _, err = service.conn.Set(path, data, state.Version); err != nil {
 		if err != zk.ErrNodeExists {
 			return err
 		}
